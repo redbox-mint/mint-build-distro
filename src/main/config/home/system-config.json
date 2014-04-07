@@ -5,6 +5,7 @@
         "institution": "University of Examples",
         "RIF-CS Group": "The University of Examples, Australia"
     },
+    "system":"mint",
     "configured": true,
     "urlBase": "${server.url.base}",
     "email": "DO_NOT_CHANGE",
@@ -107,6 +108,8 @@
         "curationEmailAddress": "${admin.email}",
         "curationRequiresConfirmation": false,
         "pidProperty": "localPid",
+        "supported-types":{ "person":"mint","group":"mint"},
+        "identifier-pids":{"local":"localPid","handle":"handlePid","nla":"nlaPid"},
         "nlaIntegration": {
             "enabled": false,
             "pidProperty": "nlaPid",

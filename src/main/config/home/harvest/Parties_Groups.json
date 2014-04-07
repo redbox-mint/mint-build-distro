@@ -25,7 +25,7 @@
         "identifierDataMapping": {
       "general": {
         "title": "${data.Name}",
-        "type": "party"
+        "type": "group"
       }
     }
     },
