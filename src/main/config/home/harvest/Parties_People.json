@@ -53,13 +53,13 @@
         "type": "person"
       },
       "nla": {
-        "description": "${data.Family_Name}",
+        "description": "${data.Description}",
         "url": "${data.Personal_Homepage}",
-        "given_name": "${data.Given_Name}",
-        "family_name": "${data.Family_Name}",
+        "surname": "${data.Given_Name}",
+        "forename": "${data.Family_Name}",
         "division": "",
         "school": "",
-        "Honorific": "${data.Honorific}"
+        "salutation": "${data.Honorific}"
       }
     }
   },
