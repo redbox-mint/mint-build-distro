@@ -146,7 +146,7 @@
 						<copyright>GPLv2</copyright>
 						<distribution></distribution>
 						<group>Application/Internet</group>
-						<name>mint-build-distro</name>
+						<name>mint-distro</name>
 						<mappings>
 							<mapping>
 								<directory>/opt/mint/home</directory>
