@@ -82,6 +82,14 @@
                     "subscribers": ["solr-event-log"]
                 }
             },
+	    {
+                "id": "jsonHarvester",
+                "description": "Harvester queue for incoming JSON objects.",
+                "priority": "7",
+                "config": {
+                    "name": "jsonHarvester"
+                }
+            },
             {
                 "id": "emailnotification",
                 "description": "Queue to send email notifications",

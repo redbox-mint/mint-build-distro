@@ -80,6 +80,11 @@
       <type>warpath</type>
       <version>1.2</version>
     </dependency>
+    <dependency>
+      <groupId>au.com.redboxresearchdata.fascinator</groupId>
+      <artifactId>plugin-harvester-json</artifactId>
+      <version>1.2-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>
