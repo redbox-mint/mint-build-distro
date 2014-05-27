@@ -1,0 +1,10 @@
+{
+    "harvester": {        
+      "idField": "ID",
+      "recordIDPrefix": "",
+      "mainPayloadId":"harvestClient.json",
+      "rulesConfig":"${fascinator.home}/harvest/",
+      "handlingType":"park",
+      "commit":true
+    }
+}
