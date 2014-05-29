@@ -1,8 +1,8 @@
 {
     "harvester": {        
       "idField": "ID",
-      "recordIDPrefix": "",
-      "mainPayloadId":"harvestClient.json",
+      "recordIDPrefix": "redbox-mint.googlecode.com/",
+      "mainPayloadId":"metadata.json",
       "rulesConfig":"${fascinator.home}/harvest/",
       "handlingType":"park",
       "commit":true
