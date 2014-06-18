@@ -3,7 +3,7 @@
       "recordIDPrefix": "redbox-mint.googlecode.com/",
       "mainPayloadId":"metadata.json",
       "rulesConfig":"${fascinator.home}/harvest/",
-      "handlingType":"park",
+      "handlingType":"overwrite",
       "commit":true
     }
 }
