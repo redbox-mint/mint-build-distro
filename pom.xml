@@ -241,7 +241,6 @@
                             <goal>unpack</goal>
                         </goals>
                         <configuration>
-                            <excludes>home/data/**</excludes>
                             <includes>home/**,portal/**,server/**,solr/**</includes>
                             <outputDirectory>${project.home}</outputDirectory>
                             <artifactItems>
