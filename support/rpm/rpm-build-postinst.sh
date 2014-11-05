@@ -9,5 +9,6 @@ chkconfig --level 445 mint on
 if [ ! -d /opt/mint/storage ]; then
   unzip /opt/mint/home/data/seed/storage.zip -d /opt/mint/
   unzip /opt/mint/home/data/seed/fascinator-index.zip -d /opt/mint/solr/indexes/fascinator
+  chown -R redbox:redbox /opt/mint/
 fi
 service mint restart
