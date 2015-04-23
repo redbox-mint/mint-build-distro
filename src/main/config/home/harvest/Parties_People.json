@@ -35,6 +35,7 @@
     }
   },
   "transformer": {
+    "curation": [ "local"],
     "metadata": [
       "ingest-relations",
       "jsonVelocity"
@@ -71,17 +72,17 @@
       ],
       "relations": {
         "GroupID_1": {
-          "prefix": "redbox-mint.googlecode.com/parties/group/",
+          "prefix": "redbox-mint.googlecode.com/parties_groups/",
           "relation": "isMemberOf",
           "reverseRelation": "hasMember"
         },
         "GroupID_2": {
-          "prefix": "redbox-mint.googlecode.com/parties/group/",
+          "prefix": "redbox-mint.googlecode.com/parties_groups/",
           "relation": "isMemberOf",
           "reverseRelation": "hasMember"
         },
         "GroupID_3": {
-          "prefix": "redbox-mint.googlecode.com/parties/group/",
+          "prefix": "redbox-mint.googlecode.com/parties_groups/",
           "relation": "isMemberOf",
           "reverseRelation": "hasMember"
         }

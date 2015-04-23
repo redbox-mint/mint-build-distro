@@ -141,7 +141,7 @@
 		<dependency>
 			<groupId>au.com.redboxresearchdata.fascinator</groupId>
 			<artifactId>plugin-harvester-json</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.3-SNAPSHOT</version>
 		</dependency>
 		<!-- Rapid AAF SSO plugin -->
 		<dependency>
@@ -502,6 +502,10 @@
         <repository>
             <id>redbox-nexus</id>
             <url>http://dev.redboxresearchdata.com.au/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>redbox-3rdparty</id>
+            <url>http://dev.redboxresearchdata.com.au/nexus/content/repositories/thirdparty/</url>
         </repository>
     </repositories>
     <scm>
