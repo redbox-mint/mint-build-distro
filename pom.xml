@@ -13,7 +13,7 @@
     </parent>
     <properties>
         <!-- Used in build -->
-        <mint.version>1.8</mint.version>
+        <mint.version>1.9-SNAPSHOT</mint.version>
         <!-- Runtime values, will replace placeholders
                  in config and control scripts -->
         <packaging>pom</packaging>
@@ -178,7 +178,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-portal</artifactId>
-			<version>1.3</version>
+			<version>1.4-SNAPSHOT</version>
 			<classifier>classes</classifier>
 			<exclusions>
 				<exclusion>
