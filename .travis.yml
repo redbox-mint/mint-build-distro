@@ -1,0 +1,19 @@
+sudo: required
+language: java
+services:
+- docker
+before_install:
+- mkdir /tmp/build
+- docker pull qcifengineering/redbox-builder
+- docker run -v /tmp/build:/build -e "CLONEPATH=https://github.com/redbox-mint/mint-build-distro.git"
+  qcifengineering/redbox-builder
+install: true
+script: true
+after_success:
+- docker run -v /tmp/build:/build -e "SONATYPE_USERNAME=$SONATYPE_USERNAME" -e "SONATYPE_PASSWORD=$SONATYPE_PASSWORD"
+  qcifengineering/redbox-builder /bin/bash -c "cd build/src;mvn --settings /m2_repo/travis-settings.xml
+  -Dmaven.repo.local=/m2_repo -DskipTests=true deploy"
+env:
+  global:
+  - secure: CjQXQWc+Led08MnRKr60ZjimFXTXVRKO0wRAtvZrUonfDd3iNJzdq7d36uz+fEXix6dJ9w8duSvMmSU5mY8afFiuVkA7B8mPAOWcmWSeVqDwTyCVlQomsiCz3EcTMRuuNzXeWb/7tOYd7jvvpQDiizMKws52fBohkXGtjneL/Frac2gEQ6CuLnQyYmL+51jKczdJVN9PeU4uVAPqyFG+sGmysdJAjiWL2uQJJkZ+AoXvTKYie5dQ5/keoKD4HNdiBeKjZluuDrBkY8DV7a0mI35pkZSEeAPWeFV0tXPOqLDqOR2PX2qKe42707qaRroMs/f3MdZRTl8bgEIPaFD0Z1SorkBlhG2m3hocfuvS6aGSvHkJflNx/qxW6jQDyGp7kqi3FaVMGSU3+4rLDJJ8z8eERVv4qsiv3lVeo2rOCTnGuAOdOD3RAzC59Fy79ypUwmEcHPoXGbCiDWilB7tNCzRB3dhjFdaRvEm5aWh5J9v8g2qREvtLLEbYIReu3nJUnRqmoXtT/GPgb84kNOO9reXstpxvIDMC2jwPJt4Ne4UUxemzA8Gw+GhFXx6L5b+k6D/eeIuxGWnsVrwKtBhDedwKhFVa+fZFQId8yPzFZ4MdafuWeLxJ7xue85eaXeUdoazU641Mq673l4pdGiRxO6U1EwMgPY4Yp7g0gWMEhyk=
+  - secure: L0Ay3zfzwLihS1GSxgO6xW0JBFrt/bU8fdWpciFXfAq2g5XbJx5KEOxASeN+A5xc07uR5Ys2mrKkP9CiV+CO0QxmVz8cQb6GV2HhDSPgvYmWR3zysTpYtD7UDYf8T6KauzOKhxIUR28fBeeP4kFIoBEkhenbRADX6J4IuaHNpmDSMxRLk754mpbLdJX5WIEdfeJmM50VJxbhfPUekxa3wUt+82iS5DCKnrB3ulYsFfHH0oO/BKk0W1zItqwFgVj3ngm7RIdvpTbacP2iW+8neAxBOHhs2rA3vVCeOFdy1I8s6KMqZHhQMecZa691Y2BJRyFZFBakN057jcP3d3jEQCgjNqH7qHAn2MV7wdTzqIL88N5OrCjIaAptkGBO+BJY9ocO+RLQebaye+E2UP5O7F/lPeapnKNnPY44jTAKCL3Hk3waJW6kZrapqL+05KDkWNWjgEVxMbHARXcC1xTDDpacb8ughfkQAeXxtcfDvNyqH1CY6YTw2hlCsxC4h1nv5w2zkaaTSuVq9CxgzuZ7/CPSffHK0k2hG0U9a7neUzWwizR8PHid1fHuwj4nbkkWJIi42yzbsfIj7UJ0bd60JQFFpH4Cg3PxQzVRWgMpTmwfn67dcqNPMqVOFTAVbeyBgYPDy6RAmQq4jMZK21UaolhX0dHxJQZ74l+iQkDH0b0=
