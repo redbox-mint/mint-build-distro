@@ -10,9 +10,7 @@ before_install:
 install: true
 script: true
 after_success:
-- docker run -v /tmp/build:/build -e "SONATYPE_USERNAME=$SONATYPE_USERNAME" -e "SONATYPE_PASSWORD=$SONATYPE_PASSWORD"
-  qcifengineering/redbox-builder /bin/bash -c "cd build/src;mvn --settings /m2_repo/travis-settings.xml
-  -Dmaven.repo.local=/m2_repo -DskipTests=true deploy"
+- docker run -v /tmp/build:/build -e "SONATYPE_USERNAME=$SONATYPE_USERNAME" -e "SONATYPE_PASSWORD=$SONATYPE_PASSWORD" qcifengineering/redbox-builder /bin/bash -c "cd build/src;mvn --settings /m2_repo/travis-settings.xml -Dmaven.repo.local=/m2_repo -DskipTests=true -Pbuild-package deploy"
 env:
   global:
   - secure: Bf72UAOXTC58PuiSU8JxWsEqUb+IcoL6c6a2NJCkTl1Uu1QKMueXITuNW2Db09usUxHipixfHcO49IpRfhrqmbKdlYcPZ8t1hn1Fg6Qsp2iCH0QE0D3+AgUXaIPzIn/B8i3aS5y0onDWTdQnlNHbRbyjie67A8dd83FZMQ5+T6hwy1AWsGgH2yjrPjMDLAHxZFzYlQa0AMvWwxLAG6gn1U++uWyFYjZHvX5w9FG5HKnFq/hwdJCMBWuVWPfISBIUvlM/eFIuCnW4teJcDpzOi4ZQWFJeqkxRhJGMLFeKCNqTBzYyqefdB+bS1j3KpWtaDZQmrKrGkbWUAUT59nFw9tLi1kmMQXgt0KwQspJBPn4eiAVZutefCS/Z9vSln94fAPtyeiHqDvtaCvebQ3bem9EBZXiOw+QVk5OLA/gSE5ic4V7s+0NBrM+atqQmwPe2FfNixOW/+d0Tz7NRARQqNpGr0RC6gxdrXYIHRmjn3TE9pqG+Re2l4X6JeKweuBR14fstMxBd7KsNVW1L6TQTO5b2V1wdZ7GOIKmTD3ejhfQ2OVDVsQFaWjL+2QkqRnsW1pLPPoP8bgkrqxwhbDCXpGTV77lX8jtwI0Njm5waeruH7h9+VDpmQjS3JaBGzKpaXDJ6WHnsAIRHfz2T0j8LNJ4hD4gX942570Pc2pkIFAA=
