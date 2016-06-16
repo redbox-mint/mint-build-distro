@@ -7,13 +7,13 @@ from java.io import ByteArrayInputStream, ByteArrayOutputStream
 from com.googlecode.fascinator.api.indexer import SearchRequest
 from com.googlecode.fascinator.common.solr import SolrResult
 
-class GetRelationshipsData:
+class PublicationNotificationData:
 
     def __init__(self):
         pass
-
+    
     def __activate__(self, context):
-
+         
          try:
              self.log = context["log"]
              self.response = context["response"]
@@ -23,29 +23,35 @@ class GetRelationshipsData:
              self.indexer = context["Services"].getIndexer()
              self.sessionState = context["sessionState"]
              self.sessionState.set("username", "admin")
-
+        
              out = self.response.getPrintWriter("text/plain; charset=UTF-8")
              relationshipMapper = ApplicationContextProvider.getApplicationContext().getBean("relationshipMapper")
              externalCurationMessageBuilder = ApplicationContextProvider.getApplicationContext().getBean("externalCurationMessageBuilder")
+         
+             builder = StringBuilder()
+             aux = ""
+             reader = self.httpRequest.getReader()
+             aux = reader.readLine()
+             while aux is not None:
+                 builder.append(aux)
+                 aux =reader.readLine()
 
-             oid = self.request.getParameter("oid")
-
-             if oid is None :
-                 identifier = self.request.getParameter("identifier")
-                 oid = self.findOidByIdentifier(identifier)
-
-
-             relationshipMap = relationshipMapper.getRelationshipMap(oid)
-             relationshipMapJsonObject = externalCurationMessageBuilder.buildMessage(relationshipMap)
-             out.println(relationshipMapJsonObject.toString(True))
+             requestJsonString = builder.toString()
+             
+             requestJson = JsonSimple(requestJsonString)
+             
+             
+             
+             
+#              out.println(relationshipMapJsonObject.toString(True))         
              out.close()
          finally:
              self.sessionState.remove("username")
-
+                
 
     def findOidByIdentifier(self, identifier):
         query = "known_ids:\"" + identifier + "\"";
-
+        
         request = SearchRequest(query);
         out = ByteArrayOutputStream();
 
@@ -59,16 +65,17 @@ class GetRelationshipsData:
             self.log.error("Error searching Solr: ", ex);
             raise ex
             return None;
+        
 
-        # Verify our results
+       # Verify our results
         if (result.getNumFound() == 0) :
             self.log.error("Cannot resolve ID '{}'", identifier);
             return None;
-
+        
         if (result.getNumFound() > 1) :
             self.log.error("Found multiple OIDs for ID '{}'", identifier);
             return None;
-
+        
 
         doc = result.getResults().get(0)
         return doc.getFirst("storage_id")

@@ -33,14 +33,12 @@ class PublishData:
         
              out.close()
              publicationHandler = ApplicationContextProvider.getApplicationContext().getBean("publicationHandler")
-
-             oid = self.request.getParameter("oid")
              
              builder = StringBuilder()
              aux = ""
              reader = self.httpRequest.getReader()
              aux = reader.readLine()
-             while aux is not None:
+             while aux is not None:  
                  builder.append(aux)
                  aux =reader.readLine()
 

@@ -4,10 +4,12 @@ from com.googlecode.fascinator.spring import ApplicationContextProvider
 from com.googlecode.fascinator.common import JsonObject
 from com.googlecode.fascinator.common.storage import StorageUtils
 from java.io import ByteArrayInputStream, ByteArrayOutputStream
+from java.lang import String
 from com.googlecode.fascinator.api.indexer import SearchRequest
 from com.googlecode.fascinator.common.solr import SolrResult
+from com.googlecode.fascinator.api.storage import PayloadType
 
-class GetRelationshipsData:
+class NotifyCurationData:
 
     def __init__(self):
         pass
@@ -34,10 +36,38 @@ class GetRelationshipsData:
                  identifier = self.request.getParameter("identifier")
                  oid = self.findOidByIdentifier(identifier)
 
+             relationshipType = self.request.getParameter("relationship")
+             curatedPid = self.request.getParameter("curatedPid")
+             sourceId = self.request.getParameter("sourceIdentifier")
+             system = self.request.getParameter("system")
 
-             relationshipMap = relationshipMapper.getRelationshipMap(oid)
-             relationshipMapJsonObject = externalCurationMessageBuilder.buildMessage(relationshipMap)
-             out.println(relationshipMapJsonObject.toString(True))
+             digitalObject = StorageUtils.getDigitalObject(self.storage, oid)
+             metadataJsonPayload = digitalObject.getPayload("metadata.json")
+             metadataJsonInstream = metadataJsonPayload.open()
+             metadataJson = JsonSimple(metadataJsonInstream)
+             metadataJsonPayload.close()
+
+             relationships = metadataJson.getArray("relationships")
+             found = False
+             for relationship in relationships:
+                 if relationship.get("identifier") == sourceId:
+                     relationship.put("isCurated",True)
+                     relationship.put("curatedPid",curatedPid)
+                     found = True
+
+             if not found:
+                 relationship = JsonObject()
+                 relationship.put("isCurated",True)
+                 relationship.put("curatedPid",curatedPid)
+                 relationship.put("relationship",relationshipType)
+                 relationship.put("identifier",sourceId)
+                 relationship.put("system",system)
+                 relationships.add(relationship)
+
+             out.println(metadataJson.toString(True))
+             istream = ByteArrayInputStream(String(metadataJson.toString(True)).getBytes())
+             StorageUtils.createOrUpdatePayload(digitalObject,"metadata.json",istream)
+
              out.close()
          finally:
              self.sessionState.remove("username")
@@ -60,7 +90,8 @@ class GetRelationshipsData:
             raise ex
             return None;
 
-        # Verify our results
+
+       # Verify our results
         if (result.getNumFound() == 0) :
             self.log.error("Cannot resolve ID '{}'", identifier);
             return None;
@@ -72,7 +103,7 @@ class GetRelationshipsData:
 
         doc = result.getResults().get(0)
         return doc.getFirst("storage_id")
-    
+
     def getObjectMeta(self, oid):
         digitalObject = StorageUtils.getDigitalObject(self.storage, oid)
         return digitalObject.getMetadata()
