@@ -9,48 +9,90 @@ from com.googlecode.fascinator.common.solr import SolrResult
 from org.apache.commons.io import IOUtils
 from java.lang import Exception
 from java.lang.reflect import Method
-from java.lang import StringBuilder
-from java.util import ArrayList
+from java.lang import StringBuilder, String
+from java.util import ArrayList, HashMap
 class PublishData:
 
     def __init__(self):
         pass
-    
+
     def __activate__(self, context):
-         
+
          try:
              self.log = context["log"]
-
-             self.response = context["response"]
-             out = self.response.getPrintWriter("text/plain; charset=UTF-8")
-             self.request = context["request"]
              self.httpRequest = context["httpServletRequest"]
-             self.systemConfig = context["systemConfig"]
-             self.storage = context["Services"].getStorage()
-             self.indexer = context["Services"].getIndexer()
              self.sessionState = context["sessionState"]
+             self.services = context["Services"]
              self.sessionState.set("username", "admin")
-        
-             out.close()
+
              publicationHandler = ApplicationContextProvider.getApplicationContext().getBean("publicationHandler")
-             
+
              builder = StringBuilder()
              aux = ""
              reader = self.httpRequest.getReader()
              aux = reader.readLine()
-             while aux is not None:  
+             while aux is not None:
                  builder.append(aux)
                  aux =reader.readLine()
 
              requestJsonString = builder.toString()
 
              requestJson = JsonSimple(requestJsonString)
-             list = ArrayList()
-             list.add(requestJson.getJsonObject())
-             publicationHandler.publishRecords(list)
+             self.log.error(requestJson.toString(True))
+             
+             publicationHandler.publishRecords(requestJson.getArray("records"))
+             
+             knownIdMap = HashMap()
+             records = requestJson.getArray("records")
+             for record in records:
+		 self.log.error(JsonSimple(record).toString(True))
+                 identifier = record.get("required_identifiers")[0].get("identifier")
+	         oid = record.get("oid")
+                 knownIdMap.put(identifier,self.getKnownIds(oid))
+		 self.log.error(identifier)
+		 self.log.error(knownIdMap.get(identifier).toString())
+                 
+             for record in records:
+                 self.updateRelationships(record.get("oid"),record.get("required_identifiers")[0].get("identifier"),knownIdMap)
+            
          except Exception, e:
-        
-             self.response.setStatus(500)
-             #self.log.error("publishing failed",e)
+             self.log.error("publishing failed",e)
          finally:
              self.sessionState.remove("username")
+             
+             
+    def updateRelationships(self,oid,identifier, knownIdMap):
+        digitalObject = StorageUtils.getDigitalObject(self.services.getStorage(), oid)
+        metadataJsonPayload = digitalObject.getPayload("metadata.json")
+        metadataJsonInstream = metadataJsonPayload.open()
+        metadataJson = JsonSimple(metadataJsonInstream)
+        metadataJsonPayload.close()
+            
+        relationships = metadataJson.getArray("relationships")
+	if relationships is not None:
+	   for knownIdPid in knownIdMap.keySet():          
+            for knownId in knownIdMap.get(knownIdPid):
+           	   for relationship in relationships:
+                    if knownId == relationship.get("identifier"):
+                        relationship.put("curatedPid",knownIdPid)
+                        relationship.put("isCurated",True)
+                        break
+                    
+        istream = ByteArrayInputStream(String(metadataJson.toString(True)).getBytes())
+        StorageUtils.createOrUpdatePayload(digitalObject,"metadata.json",istream)
+            
+        
+    def getKnownIds(self,oid):
+        knownIds = None
+	req = SearchRequest("storage_id:"+oid+" AND known_ids:[* TO *]")
+        req.addParam("fq", "")
+        req.setParam("sort", "last_modified desc, f_dc_title asc");
+        out = ByteArrayOutputStream()
+        self.services.indexer.search(req, out)
+        self.__result = SolrResult(ByteArrayInputStream(out.toByteArray()))        
+	if self.__result.getResults().size() > 0:
+            knownIds = self.__result.getResults()[0].getList("known_ids")
+
+        return knownIds		
+
+            
