@@ -45,7 +45,7 @@ for /f "tokens=1,2 delims=:" %%i in ("%http_proxy%") do (
 )
 
 REM jvm memory settings
-set JVM_OPTS=-XX:MaxPermSize=256m -Xmx512m -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4001,suspend=n
+set JVM_OPTS=-XX:MaxPermSize=256m -Xmx512m
 
 REM jetty settings
 set JETTY_OPTS=-Djetty.port=%LOCAL_PORT% -Djetty.logs=%JETTY_LOGS% -Djetty.home=%PROJECT_HOME%/server/jetty
