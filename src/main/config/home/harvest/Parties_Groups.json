@@ -36,7 +36,7 @@
             "sourcePath": ["data"],
             "relations": {
                 "Parent_Group_ID": {
-                    "prefix": "redbox-mint.googlecode.com/parties_groups/",
+                    "prefix": "redbox-mint.googlecode.com/parties/group/",
                     "relation": "isPartOf",
                     "reverseRelation": "hasPart"
                 }

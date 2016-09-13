@@ -28,7 +28,7 @@
             "sourcePath": ["data"],
             "relations": {
                 "Groups": {
-                    "prefix": "redbox-mint.googlecode.com/parties_groups/",
+                    "prefix": "redbox-mint.googlecode.com/parties/group/",
                     "relation": "isMemberOf",
                     "reverseRelation": "hasMember"
                 }
