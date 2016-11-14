@@ -82,6 +82,14 @@
 					<groupId>org.apache.activemq</groupId>
 					<artifactId>activemq-all</artifactId>
 				</exclusion>
+        <exclusion>
+					<groupId>org.apache.activemq</groupId>
+					<artifactId>activemq-all</artifactId>
+				</exclusion>
+        <exclusion>
+					<groupId>com.google.collections</groupId>
+					<artifactId>google-collections</artifactId>
+				</exclusion>
 				<exclusion>
 					<groupId>org.fcrepo</groupId>
 					<artifactId>persistence-api</artifactId>
