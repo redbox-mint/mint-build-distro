@@ -3,17 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>mint-distro</artifactId>
-    <version>1.8.1-SNAPSHOT</version>
+    <version>1.9-SNAPSHOT</version>
     <packaging>${packaging}</packaging>
     <name>The Mint - Distribution</name>
     <parent>
         <groupId>com.googlecode.redbox-mint</groupId>
         <artifactId>mint</artifactId>
-        <version>1.8.1-SNAPSHOT</version>
+        <version>1.9-SNAPSHOT</version>
     </parent>
     <properties>
         <!-- Used in build -->
-        <mint.version>1.8.1-SNAPSHOT</mint.version>
+        <mint.version>1.9-SNAPSHOT</mint.version>
         <!-- Runtime values, will replace placeholders
                  in config and control scripts -->
         <packaging>pom</packaging>
@@ -43,18 +43,18 @@
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-project</artifactId>
             <type>pom</type>
-            <version>1.8.1-SNAPSHOT</version>
+            <version>1.9-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint</artifactId>
             <type>pom</type>
-            <version>1.8.1-SNAPSHOT</version>
+            <version>1.9-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-config</artifactId>
-            <version>1.8.1-SNAPSHOT</version>
+            <version>1.9-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>sruclient-mint</artifactId>
-            <version>1.8.1-SNAPSHOT</version>
+            <version>1.9-SNAPSHOT</version>
         </dependency>
         <!-- Mint Curation Plugin -->
         <dependency>
@@ -125,7 +125,7 @@
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-vital-transformer-fedora3</artifactId>
-			<version>1.8.1-SNAPSHOT</version>
+			<version>1.9-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
 					<groupId>axis</groupId>
