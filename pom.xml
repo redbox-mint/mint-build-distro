@@ -59,7 +59,7 @@
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>plugin-transaction-external-curation</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.2</version>
         </dependency>
 
         <dependency>
@@ -515,6 +515,35 @@
                     </execution>
                 </executions>
             </plugin>
+       <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-enforcer-plugin</artifactId>
+    <version>1.0.1</version>
+    <executions>
+        <execution>
+            <id>enforce-no-snapshots</id>
+            <goals>
+                <goal>enforce</goal>
+            </goals>
+            <configuration>
+                <rules>
+                    <requireReleaseDeps>
+                        <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+                        <message>No SNAPSHOT dependencies allowed!</message>
+                        <excludes>
+                            <!--
+                                We want to exclude child module dependencies from this check, as we're
+                                always using SNAPSHOT versions (except when performing a release)
+                            -->
+                            <exclude>${project.groupId}:*</exclude>
+                        </excludes>
+                    </requireReleaseDeps>
+                </rules>
+                <fail>true</fail>
+            </configuration>
+        </execution>
+    </executions>
+</plugin> 
         </plugins>
     </build>
     <repositories>
@@ -538,7 +567,8 @@
         </repository>
     </repositories>
     <scm>
-        <url>https://github.com/redbox-mint/mint-build-dev-local</url>
+        <url>scm:git://github.com/redbox-mint/mint-build-distro.git</url>
+        <connection>scm:git://github.com/redbox-mint/mint-build-distro.git</connection>
         <developerConnection>scm:git:https://github.com/redbox-mint/mint-build-dev-local</developerConnection>
         <tag>HEAD</tag>
     </scm>
