@@ -9,11 +9,11 @@
     <parent>
         <groupId>com.googlecode.redbox-mint</groupId>
         <artifactId>mint</artifactId>
-        <version>1.9-SNAPSHOT</version>
+        <version>1.9</version>
     </parent>
     <properties>
         <!-- Used in build -->
-        <mint.version>1.9-SNAPSHOT</mint.version>
+        <mint.version>1.9</mint.version>
         <!-- Runtime values, will replace placeholders
                  in config and control scripts -->
         <packaging>pom</packaging>
@@ -165,7 +165,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-authentication-ldap</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.2</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.felix.commons</groupId>
@@ -176,17 +176,17 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-roles-ldap</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>au.com.redboxresearchdata</groupId>
 			<artifactId>fascinator-shibboleth</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-portal</artifactId>
-			<version>1.4-SNAPSHOT</version>
+			<version>1.4</version>
 			<classifier>classes</classifier>
 			<exclusions>
 				<exclusion>
@@ -199,7 +199,7 @@
           <groupId>com.googlecode.the-fascinator</groupId>
           <artifactId>fascinator-portal</artifactId>
           <type>warpath</type>
-          <version>1.4-SNAPSHOT</version>
+          <version>1.4</version>
           <exclusions>
           <exclusion>
           	<groupId>com.sun.jersey</groupId>
@@ -515,7 +515,7 @@
                     </execution>
                 </executions>
             </plugin>
-       <plugin>
+    <!--   <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-enforcer-plugin</artifactId>
     <version>1.0.1</version>
@@ -530,12 +530,12 @@
                     <requireReleaseDeps>
                         <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                         <message>No SNAPSHOT dependencies allowed!</message>
-                        <excludes>
+                        <excludes>-->
                             <!--
                                 We want to exclude child module dependencies from this check, as we're
                                 always using SNAPSHOT versions (except when performing a release)
                             -->
-                            <exclude>${project.groupId}:*</exclude>
+           <!--                 <exclude>${project.groupId}:*</exclude>
                         </excludes>
                     </requireReleaseDeps>
                 </rules>
@@ -543,7 +543,7 @@
             </configuration>
         </execution>
     </executions>
-</plugin> 
+</plugin>--> 
         </plugins>
     </build>
     <repositories>
