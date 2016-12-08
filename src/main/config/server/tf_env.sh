@@ -56,13 +56,13 @@ fi
 JETTY_OPTS="-Djetty.port=$LOCAL_PORT -Djetty.logs=$JETTY_LOGS -Djetty.home=$PROJECT_HOME/server/jetty"
 
 # solr settings
-SOLR_OPTS="-Dsolr.solr.home=$PROJECT_HOME/solr"
+SOLR_OPTS="-Dsolr.solr.home=$PROJECT_HOME/data/solr"
 
 # Geonames
 GEONAMES="-Dgeonames.solr.home=$PROJECT_HOME/home/geonames/solr"
 
 # directories
-CONFIG_DIRS="-Dfascinator.home=$TF_HOME -Dportal.home=$PROJECT_HOME/portal -Dstorage.home=$PROJECT_HOME/storage"
+CONFIG_DIRS="-Dfascinator.home=$TF_HOME -Dportal.home=$PROJECT_HOME/portal -Dproject.data=$PROJECT_HOME/data -Dstorage.home=$PROJECT_HOME/data/storage -Dderby.system.home=$PROJECT_HOME/data/database"
 
 # additional settings
 EXTRA_OPTS="-Dserver.url.base=$SERVER_URL -Damq.port=$AMQ_PORT -Damq.stomp.port=$AMQ_STOMP_PORT -Dsmtp.host=$SMTP_HOST -Dadmin.email=$ADMIN_EMAIL -Dredbox.version=$REDBOX_VERSION"

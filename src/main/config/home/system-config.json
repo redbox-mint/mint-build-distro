@@ -27,13 +27,13 @@
     "authentication": {
         "type": "internal",
         "internal": {
-            "path": "${fascinator.home}/security/users.properties"
+            "path": "${project.data}/security/users.properties"
         }
     },
     "roles": {
         "type": "internal",
         "internal": {
-            "path": "${fascinator.home}/security/roles.properties"
+            "path": "${project.data}/security/roles.properties"
         }
     },
     "storage": {
@@ -118,6 +118,11 @@
         "pidProperty": "localPid",
         "supported-types":{ "person":"mint","group":"mint"},
         "identifier-pids":{"local":"localPid","handle":"handlePid","nla":"nlaPid"},
+        "external-system-urls": {
+				 "notify-curation":{
+					"redbox":"http://localhost:9000/redbox/default/api/notifyCuration.script?apiKey=1412412412241"
+				 }
+        },
         "nlaIntegration": {
             "enabled": false,
             "pidProperty": "nlaPid",
@@ -176,7 +181,7 @@
         "tfpackage": "application/x-fascinator-package"
     },
     "database-service": {
-        "derbyHome": "${fascinator.home}/database-service"
+        "derbyHome": "${project.data}/database-service"
     },
     "portal": {
         "home": "${portal.home}",

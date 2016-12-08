@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.googlecode.redbox-mint</groupId>
         <artifactId>mint</artifactId>
-        <version>1.9</version>
+        <version>1.10-SNAPSHOT</version>
     </parent>
     <properties>
         <!-- Used in build -->
@@ -25,7 +25,8 @@
         <dir.home>${project.home}/home</dir.home>
         <dir.portal>${project.home}/portal</dir.portal>
         <dir.server>${project.home}/server</dir.server>
-        <dir.solr>${project.home}/solr</dir.solr>
+        <dir.data>${project.home}/data</dir.data>
+        <dir.solr>${project.home}/data/solr</dir.solr>
         <dir.storage>${project.home}/storage</dir.storage>
         <dir.geonames>${dir.home}/geonames/solr</dir.geonames>
         <server.url.base>http://${ip.address}:${server.port}/mint/</server.url.base>
@@ -54,7 +55,7 @@
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-config</artifactId>
-            <version>1.9</version>
+            <version>1.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
@@ -367,7 +368,7 @@
                             <goal>unpack</goal>
                         </goals>
                         <configuration>
-                            <includes>home/**,portal/**,server/**,solr/**</includes>
+                            <includes>home/**,portal/**,server/**,solr/**,data/**</includes>
                             <outputDirectory>${project.home}</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
