@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>mint-distro</artifactId>
-    <version>1.10-SNAPSHOT</version>
+    <version>1.9.0.1-SNAPSHOT</version>
     <packaging>${packaging}</packaging>
     <name>The Mint - Distribution</name>
     <parent>
         <groupId>com.googlecode.redbox-mint</groupId>
         <artifactId>mint</artifactId>
-        <version>1.10-SNAPSHOT</version>
+        <version>1.9.0.1-SNAPSHOT</version>
     </parent>
     <properties>
         <!-- Used in build -->
@@ -50,12 +50,12 @@
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint</artifactId>
             <type>pom</type>
-            <version>1.9</version>
+            <version>1.9.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-config</artifactId>
-            <version>1.10-SNAPSHOT</version>
+            <version>1.9</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
@@ -187,7 +187,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-portal</artifactId>
-			<version>1.4</version>
+			<version>1.4.1-SNAPSHOT</version>
 			<classifier>classes</classifier>
 			<exclusions>
 				<exclusion>
@@ -200,7 +200,7 @@
           <groupId>com.googlecode.the-fascinator</groupId>
           <artifactId>fascinator-portal</artifactId>
           <type>warpath</type>
-          <version>1.4</version>
+          <version>1.4.1-SNAPSHOT</version>
           <exclusions>
           <exclusion>
           	<groupId>com.sun.jersey</groupId>
