@@ -8,4 +8,5 @@ rm -Rf mint-build-distro-initial-data-1.2-1.noarch.rpm
 cd /opt/mint
 tar -xvzf mint-build-distro-initial-data.tar.gz -C /
 mv /opt/mint/storage /opt/mint/data/storage
+mv /opt/mint/solr /opt/mint/data/solr
 rm -Rf /opt/mint/mint-build-distro-initial-data.tar.gz
