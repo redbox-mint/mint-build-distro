@@ -91,6 +91,22 @@
                 }
             },
             {
+                "id": "messagingScripts",
+                "description": "Allows customisable message queues based on 'destinations' configuration below.",
+                "priority": "7",
+                "config": {
+                    "name": "messagingScripts",
+                    "destinations": [
+                        {
+                            "name": "reindex",
+                            "type": "queue",
+                            "scriptPath": "${fascinator.home}/scripts/messaging/reindex.groovy",
+                            "scriptEngine":"groovy"
+                        }
+                    ]
+                }
+            },
+            {
                 "id": "emailnotification",
                 "description": "Queue to send email notifications",
                 "priority": "8",
@@ -336,52 +352,60 @@
                 "fields" : [
                   {
                       "name":"mint-total",
-                      "label" : "total",                  
+                      "label" : "total",
                       "solr_field":"numFound",
-                      "solr_field_value":""                                                
+                      "solr_field_value":""
                   },
                   {
                     "name" : "parties_people",
                     "label" : "parties_people",
                     "solr_field":"display_type",
-                    "solr_field_value":"parties_people" 
+                    "solr_field_value":"parties_people"
                   },
                   {
                     "name" : "parties_groups",
                     "label" : "parties_groups",
                     "solr_field":"display_type",
-                    "solr_field_value":"parties_groups" 
+                    "solr_field_value":"parties_groups"
                   },
                   {
                     "name" : "research_activities",
                     "label" : "research_activities",
                     "solr_field":"display_type",
-                    "solr_field_value":"research_activities" 
+                    "solr_field_value":"research_activities"
                   },
                   {
                     "name" : "activities:",
                     "label" : "activities:",
                     "solr_field":"display_type",
                     "solr_field_value":"research_activities",
-                    "groupby":"repository_name" 
+                    "groupby":"repository_name"
                   },
                   {
                     "name" : "services",
                     "label" : "services",
                     "solr_field":"display_type",
-                    "solr_field_value":"services" 
+                    "solr_field_value":"services"
                   },
                   {
                     "name" : "services:",
                     "label" : "services:",
                     "solr_field":"display_type",
                     "solr_field_value":"services",
-                    "groupby":"repository_name" 
+                    "groupby":"repository_name"
                   }
               ]
             }
         }
-    	}
+    	},
+      "services": [
+            {
+                "id": "languageService",
+                "className": "com.googlecode.fascinator.portal.services.impl.JavaPropertiesLanguageService",
+                "config": {
+                    "propertiesDir": "${fascinator.home}/language-files/"
+                }
+            }
+        ]
 
-   
 }

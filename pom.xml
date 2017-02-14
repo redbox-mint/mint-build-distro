@@ -50,12 +50,12 @@
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint</artifactId>
             <type>pom</type>
-            <version>1.9.0.1-SNAPSHOT</version>
+            <version>1.9</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-config</artifactId>
-            <version>1.9</version>
+            <version>1.9.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
@@ -66,6 +66,11 @@
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>sruclient-mint</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.redbox-mint</groupId>
+            <artifactId>plugin-transaction-curation-mint</artifactId>
             <version>1.9</version>
         </dependency>
         <!-- Mint Curation Plugin -->
@@ -184,6 +189,13 @@
 			<artifactId>fascinator-shibboleth</artifactId>
 			<version>0.0.2</version>
 		</dependency>
+    <dependency>
+			<groupId>com.googlecode.the-fascinator</groupId>
+			<artifactId>fascinator-portal</artifactId>
+			<type>war</type>
+			<classifier>skinny</classifier>
+			<version>1.4.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-portal</artifactId>
@@ -212,6 +224,11 @@
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.9.0.GA</version>
+		</dependency>
+    <dependency>
+		    <groupId>au.com.redboxresearchdata.fascinator</groupId>
+            <artifactId>plugin-messaging-scripting</artifactId>
+            <version>1.4</version>
 		</dependency>
     </dependencies>
     <profiles>
@@ -544,7 +561,7 @@
             </configuration>
         </execution>
     </executions>
-</plugin>--> 
+</plugin>-->
         </plugins>
     </build>
     <repositories>
