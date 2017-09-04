@@ -337,6 +337,7 @@
         "migrationScript": ""
     },
     "api": {
+	    "apiKeyFile": "${project.data}/security/apiKeys.json",
     		"published-records-by-type": { "className": "com.googlecode.fascinator.portal.api.impl.PublishedRecordsByTypeAPICallHandlerImpl"},
         "countries":{ "className": "com.googlecode.fascinator.portal.api.impl.CountryLookupAPICallHandlerImpl"},
         "mint-stats" : {
