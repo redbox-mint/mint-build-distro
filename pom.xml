@@ -101,7 +101,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+    <dependency>
+			<groupId>com.googlecode.the-fascinator</groupId>
+			<artifactId>fascinator-core</artifactId>
+			<version>1.5-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-digester</groupId>
 			<artifactId>commons-digester</artifactId>
