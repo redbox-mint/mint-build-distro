@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>mint-distro</artifactId>
-    <version>1.10-SNAPSHOT</version>
+    <version>1.10</version>
     <packaging>${packaging}</packaging>
     <name>The Mint - Distribution</name>
     <parent>
@@ -70,13 +70,13 @@
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>plugin-transaction-curation-mint</artifactId>
-            <version>1.10-SNAPSHOT</version>
+            <version>1.10</version>
         </dependency>
         <!-- Mint Curation Plugin -->
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>plugin-transformer-local</artifactId>
-            <version>1.10-SNAPSHOT</version>
+            <version>1.10</version>
         </dependency>
         <dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
@@ -236,7 +236,7 @@
     <dependency>
           <groupId>com.googlecode.redbox-mint</groupId>
           <artifactId>plugin-transformer-handle</artifactId>
-          <version>1.10-SNAPSHOT</version>
+          <version>1.10</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
