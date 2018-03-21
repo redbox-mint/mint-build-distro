@@ -309,6 +309,7 @@
                             <copyright>GPLv2</copyright>
                             <distribution />
                             <group>Application/Internet</group>
+                            <autoRequires>false</autoRequires>
                             <name>mint-distro</name>
                             <mappings>
                                 <mapping>
