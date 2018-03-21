@@ -13,7 +13,7 @@
     </parent>
     <properties>
         <!-- Used in build -->
-        <mint.version>1.10-SNAPSHOT</mint.version>
+        <mint.version>1.10.1-SNAPSHOT</mint.version>
         <!-- Runtime values, will replace placeholders
                  in config and control scripts -->
         <packaging>pom</packaging>
