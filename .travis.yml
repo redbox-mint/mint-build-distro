@@ -5,7 +5,7 @@ services:
 before_install:
 - mkdir -p /tmp/build $HOME/.m2
 - docker pull qcifengineering/redbox-builder
-- docker run -v /tmp/build:/build -e "CLONEPATH=https://github.com/redbox-mint/mint-build-distro.git"
+- docker run -v /tmp/build:/build -v $HOME/.m2:/m2_repo -e "CLONEPATH=https://github.com/redbox-mint/mint-build-distro.git"
   qcifengineering/redbox-builder
 cache:
   directories:
