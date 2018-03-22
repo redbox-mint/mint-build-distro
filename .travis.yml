@@ -3,8 +3,7 @@ language: java
 services:
 - docker
 before_install:
-- mkdir /tmp/build
-- mkdir $HOME/.m2
+- mkdir -p /tmp/build $HOME/.m2
 - docker pull qcifengineering/redbox-builder
 - docker run -v /tmp/build:/build -e "CLONEPATH=https://github.com/redbox-mint/mint-build-distro.git"
   qcifengineering/redbox-builder
