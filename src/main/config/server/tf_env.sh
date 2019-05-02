@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # this script sets the environment for other fascinator scripts
-#
+# 
 if [ -z "$SERVER_URL" ]; then
   export SERVER_URL="${server.url.base}"
 fi
