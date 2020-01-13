@@ -9,21 +9,27 @@ before_install:
   qcifengineering/redbox-builder
 cache:
   directories:
-  - $HOME/.m2
+  - "$HOME/.m2"
 install: true
 script: true
 after_success:
-- docker run -v /tmp/build:/build -v $HOME/.m2:/m2_repo -e "SONATYPE_USERNAME=$SONATYPE_USERNAME" -e "SONATYPE_PASSWORD=$SONATYPE_PASSWORD"
-  qcifengineering/redbox-builder /bin/bash -c "cd build/src;mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn --settings /apache-maven-2.2.1/conf/settings.xml
-  -Dmaven.repo.local=/m2_repo -DskipTests=true -Pbuild-package deploy | grep -v 'CHECKSUM.*'| grep -v 'downloaded.*' | grep -v 'Copying.*'| grep -v '\[INFO\].*'"
+- docker run -v /tmp/build:/build -v $HOME/.m2:/m2_repo -e "SONATYPE_USERNAME=$SONATYPE_USERNAME"
+  -e "SONATYPE_PASSWORD=$SONATYPE_PASSWORD" qcifengineering/redbox-builder /bin/bash
+  -c "cd build/src;mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+  --settings /apache-maven-2.2.1/conf/settings.xml -Dmaven.repo.local=/m2_repo -DskipTests=true
+  -Pbuild-package deploy | grep -v 'CHECKSUM.*'| grep -v 'downloaded.*' | grep -v
+  'Copying.*'| grep -v '\[INFO\].*'"
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash dockerhub_deploy.sh; fi
 env:
   global:
   - secure: Bf72UAOXTC58PuiSU8JxWsEqUb+IcoL6c6a2NJCkTl1Uu1QKMueXITuNW2Db09usUxHipixfHcO49IpRfhrqmbKdlYcPZ8t1hn1Fg6Qsp2iCH0QE0D3+AgUXaIPzIn/B8i3aS5y0onDWTdQnlNHbRbyjie67A8dd83FZMQ5+T6hwy1AWsGgH2yjrPjMDLAHxZFzYlQa0AMvWwxLAG6gn1U++uWyFYjZHvX5w9FG5HKnFq/hwdJCMBWuVWPfISBIUvlM/eFIuCnW4teJcDpzOi4ZQWFJeqkxRhJGMLFeKCNqTBzYyqefdB+bS1j3KpWtaDZQmrKrGkbWUAUT59nFw9tLi1kmMQXgt0KwQspJBPn4eiAVZutefCS/Z9vSln94fAPtyeiHqDvtaCvebQ3bem9EBZXiOw+QVk5OLA/gSE5ic4V7s+0NBrM+atqQmwPe2FfNixOW/+d0Tz7NRARQqNpGr0RC6gxdrXYIHRmjn3TE9pqG+Re2l4X6JeKweuBR14fstMxBd7KsNVW1L6TQTO5b2V1wdZ7GOIKmTD3ejhfQ2OVDVsQFaWjL+2QkqRnsW1pLPPoP8bgkrqxwhbDCXpGTV77lX8jtwI0Njm5waeruH7h9+VDpmQjS3JaBGzKpaXDJ6WHnsAIRHfz2T0j8LNJ4hD4gX942570Pc2pkIFAA=
   - secure: eLEUkbhlIrTtAdxBE+cZR5fO9IkNPGkgI08+jry0mwgmla+1CQSRlG5edmBVZq1Cy+rX2MkQkfl6BaT7NGMs0hemGBOEHMH6sJGM6FEgGuysDzjI0UXUPtgd7aQhcnwE7s5PfUKJXU0tWa5S8ySzQBjujZs8SceIwdfIjwQ06xY/YyGxSceumKwQOIHM5Y+VtMy/wMCvQWlw1KbMf3aUG37qeaH2UA6iIW2hJRjupuEsNdvR3dKmlz9/BBwVD+u9aPHa4S4PnqoiBY9tgeALVUcB8GAzcPn2BGfcnW2+QiFhTkwnPp1xvz62PqfiRMQFG1xc9GD/1z8pScGykigHwwQOTMpJvabjH3fi5mBZqk02jGM6klu0WRDaDS6cYMksXKeAI7PzIbLxO6U+v2AmugnIhP4KXansmOY/1d1TNn88iAopa+kVh89Rfk/EmFG+X6C/LqFl0pVr4eApjxBQxZRPMKUku08czjwiNMiEaDyFYEjw+UTnuBM1Dnpqs1chfNumnwbLYuHNjAmSdddjiCDH7ZMIBpzxl6MDZHZRp6MfQTsGbQuSjJwyXMHCcUhVgOFiRQaXG0Xml/69D9NBhW1Wjplw90prNTaL739sTKxk+rsiFkptMDSGLPqfRfgsbZVy8UrCQYYNd1fNLkBxThzUCVlQ12RbwWtX0qiyv/c=
+  - secure: iVnu0Tt9ZDCXAxL+7ivtMhDm5qvTV6f3rjvTaUywAKXFS+I/Z6XqZBQa4WR0TSbzEJOBPOl9pmc9cDRAI3ZNVVJKucqYU9FT8e0JcfZnU9j2FokBnXWdFsuDmaoq4+RMZEybOtdKrzLrwxC6fVnuaTRlQQm5P3vXRoFolIgxhS1t1YFBkidB8u8bqMU4smuhdIf/DunEcZKBhJHuOl4XEwk4q3fTa37f8CPsEXlKzOKyS0XFDFEdRZBqTTk2dCijI0/sBsW3Jlb9QP8LrU3xW/FS/zvsS3AFsM23nHLn8bqduByDhNQhSHqkl+uwud+8+1S7mfs3feWjeWQe+EUKUp8vdmL6xECC8Rl/ld1kUEVkfShrKa3TO+oAOoTsWpaQtYhrDTa4JwOW033ZVEQwGw3upEB7Lsxwr3ypPbqm91HPl/y+zKFP7Bvutkzzpjs6Vv25C85FIONnW/mhnGO43VzVdDmYmYVEHy4SdwUoZsn2TrTT/o+MCGc54vaJzxIjf8ot0xY3H2LeZ3SOwW5XMzAbcOUN16OLmx1r+SemDD84VDL2aEyYoGzww7c8YLrp6puf70eFny9vqouaFOVd1ZRGU1W44ynuyD87AIePDYh2nSfxmwTUOaMlEY1mmsGtErgD2ktin84IDJbC4OomEC+jEEXlWYXjg8wwt2xtmjA=
+  - secure: c0YCqMsu621Gq7Ir67y4xY6oJky0kfReuwKXmaEghNp9YWZWxiiTCS6xZJl89v2XLsYwhrUMw6dCpZBOYc2HTyPTdBYWsUYTxaYMDofOYdDA3pmuKiKWXT9O5C5uPYBQ8fM0nra39SI4TYuws7RRJ8IW3Z6c66KWy9p8v5iHABy5WQexH4Rcw878QPFFbDqrT5kNV6hTU8FgkXOCzVRFcj11TvZHYSrHTW4vJVVvQXz+sCPf2udeWSN76R9OCBjuz1U/Lsk1oxJ/pLS29ScwuSksOEjTAREqy1xjmb4fE487viX2F1WTsKCYZlNMNnvBcQDspRhkO9/YkneZ5OULyr2WVmCN1SWAVU4bbjFbIUIIYvyDHlI6oXlmAfEbrp1wrDjTagCB9V1JHYBA7ZBocAUwBnbxRApvfhtcINnsQLYMAppHZPV7z0QVOk1WDw6haJQoAf6/ehedk8X+bGmEHYQ2/1CLv+DC3emypBxRlSN8FG3jvVnZWvNNnpx8jDEGfRNUKVhsNWVuMDfdk4wIYMIpt4eIKsw+1K0oXmC8wUnFdaMQzFRt/w4uLicBBn6A3Xg1vb/oMxZlg8v15Bl95FcRgUxcOuGjjbETERUioUvQ5vhn7qRbo2alegaOO6Nj1CHd1td4rL+mtNs2hhAncGSeAsFHyXSt/u1wznN57go=
 notifications:
   webhooks:
     urls:
-      - http://dev.redboxresearchdata.com.au/hooks/mintdocker
+    - http://dev.redboxresearchdata.com.au/hooks/mintdocker
     on_success: always
     on_failure: never
     on_start: never
