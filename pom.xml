@@ -3,17 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>mint-distro</artifactId>
-    <version>1.10.1-SNAPSHOT</version>
+    <version>1.10.1</version>
     <packaging>${packaging}</packaging>
     <name>The Mint - Distribution</name>
     <parent>
         <groupId>com.googlecode.redbox-mint</groupId>
         <artifactId>mint</artifactId>
-        <version>1.10.1-SNAPSHOT</version>
+        <version>1.10.1</version>
     </parent>
     <properties>
         <!-- Used in build -->
-        <mint.version>1.10.1-SNAPSHOT</mint.version>
+        <mint.version>1.10.1</mint.version>
         <!-- Runtime values, will replace placeholders
                  in config and control scripts -->
         <packaging>pom</packaging>
@@ -44,18 +44,18 @@
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-project</artifactId>
             <type>pom</type>
-            <version>1.10.1-SNAPSHOT</version>
+            <version>1.10</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint</artifactId>
             <type>pom</type>
-            <version>1.10.1-SNAPSHOT</version>
+            <version>1.10.1</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>mint-config</artifactId>
-            <version>1.10.1-SNAPSHOT</version>
+            <version>1.10.1</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>com.googlecode.redbox-mint</groupId>
             <artifactId>plugin-transaction-curation-mint</artifactId>
-            <version>1.10.1-SNAPSHOT</version>
+            <version>1.10.1</version>
         </dependency>
         <!-- Mint Curation Plugin -->
         <dependency>
@@ -81,12 +81,12 @@
         <dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-indexer-solr</artifactId>
-			<version>1.5-SNAPSHOT</version>
+			<version>1.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-web-service</artifactId>
-			<version>1.1.1-SNAPSHOT</version>
+			<version>1.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -124,7 +124,7 @@
     <dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-core</artifactId>
-			<version>1.5</version>
+			<version>1.6</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-digester</groupId>
@@ -217,12 +217,12 @@
 			<artifactId>fascinator-portal</artifactId>
 			<type>war</type>
 			<classifier>skinny</classifier>
-			<version>1.5</version>
+			<version>1.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-portal</artifactId>
-			<version>1.5</version>
+			<version>1.7</version>
 			<classifier>classes</classifier>
 			<exclusions>
 				<exclusion>
@@ -235,7 +235,7 @@
           <groupId>com.googlecode.the-fascinator</groupId>
           <artifactId>fascinator-portal</artifactId>
           <type>warpath</type>
-          <version>1.5</version>
+          <version>1.7</version>
           <exclusions>
           <exclusion>
           	<groupId>com.sun.jersey</groupId>
@@ -256,7 +256,7 @@
     <dependency>
           <groupId>com.googlecode.redbox-mint</groupId>
           <artifactId>plugin-transformer-handle</artifactId>
-          <version>1.10</version>
+          <version>1.10.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
